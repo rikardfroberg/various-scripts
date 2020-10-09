@@ -39,9 +39,7 @@ which ng &>/dev/null && (echo -n " ng: ";ng --version | grep '^Angular CLI')
 echo "Done!"
 echo
 echo "Checking ssh against bitbucket"
-#  n.b.! Misspelled gitt (should be git) on purpose while checking the
-#+ script to see that it reported errors. Change to "git" to make it work.
-check "ssh -T gitt@bitbucket.org >/dev/null" " ssh to bitbucket, success" " Couldn't connect via ssh to bitbucket. Did you add your public key to your account?" " Err: ssh to bitbucket"
+check "ssh -T git@bitbucket.org >/dev/null" " ssh to bitbucket, success" " Couldn't connect via ssh to bitbucket. Did you add your public key to your account?" " Err: ssh to bitbucket"
 echo "Done!"
 echo
 echo "Rough check of versions"
