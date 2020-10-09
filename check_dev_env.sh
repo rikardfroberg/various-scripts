@@ -13,6 +13,7 @@ error(){
     echo "$check (see $ERROR_LOG)" 1>&2
 }
 
+# usage: check "command" "msg if succcess" "err msg for log" "err msg"
 check(){
     cmd="$1"
     success="$2"
