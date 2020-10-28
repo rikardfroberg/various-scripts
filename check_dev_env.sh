@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ERROR_LOG="$0_$(date +%Y-%m-%d).log"
-TOOLS="mvn docker-compose docker nodejs ng npm apa java javac"
+TOOLS="mvn docker-compose docker nodejs ng npm java javac javadoc"
 
 rm -f "$ERROR_LOG"
 
@@ -13,7 +13,6 @@ error(){
     echo "$check (see $ERROR_LOG)" 1>&2
 }
 
-# usage: check "command" "msg if succcess" "err msg for log" "err msg"
 check(){
     cmd="$1"
     success="$2"
@@ -39,6 +38,7 @@ which ng &>/dev/null && (echo -n " ng: ";ng --version | grep '^Angular CLI')
 echo "Done!"
 echo
 echo "Checking ssh against bitbucket"
+
 check "ssh -T git@bitbucket.org >/dev/null" " ssh to bitbucket, success" " Couldn't connect via ssh to bitbucket. Did you add your public key to your account?" " Err: ssh to bitbucket"
 echo "Done!"
 echo
@@ -47,6 +47,7 @@ echo "Rough check of versions"
 declare -A app_min_versions=(
     [java]=11
     [javac]=11
+    [javadoc]=11
     [ng]=9
 )
 for app in "${!app_min_versions[@]}"
@@ -66,3 +67,4 @@ do
         error "$app has version $version, required: $min" " WARN: $app has version $version but $min is recommended."
     fi
 done
+echo "Done."
